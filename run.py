@@ -13,4 +13,7 @@ module = importlib.import_module(args.m)
 func = getattr(module, args.f)
 inp = literal_eval(args.i)
 out = func(inp)
-print("Result: ", out)
+if not out:
+    print("Result:", inp) # for inplace changes for mutable objects
+else:
+    print("Result: ", out)

@@ -27,3 +27,24 @@ def insertion_sort(x):
                 break
         x[j+1:i+1] = [x[i]] + x[j+1:i]
     return x
+
+def partition(array, low, high):
+    # returns new pivot index
+    # array is mutatble (change persists outside function)
+    pivot_idx = high
+    i = low-1
+    for j in range(low, high):
+        if array[j]<=array[pivot_idx]:
+            i+=1 # until i all lower than pivot, so, i+1 place is left to insert j values smaller than pivot
+            array[i], array[j] = array[j], array[i]
+    array[pivot_idx], array[i+1] = array[i+1], array[pivot_idx]
+    return i+1
+
+
+def quicksort(array, low=0, high=None):
+    if not high:
+        high = len(array) - 1
+    if low<high:
+        pivot_idx = partition(array, low, high)
+        quicksort(array, low, pivot_idx-1)
+        quicksort(array, pivot_idx+1, high)
