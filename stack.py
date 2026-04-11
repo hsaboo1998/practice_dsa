@@ -1,5 +1,3 @@
-from logging import Logger
-log 
 # stack using linked list
 class Node(value):
     def __init__(self):
