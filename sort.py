@@ -1,4 +1,4 @@
-# bubble sort
+# bubble sort - O(n^2)
 def bubble_sort(x):
     n = len(x)
     for i in range(n-1):
@@ -28,6 +28,7 @@ def insertion_sort(x):
         x[j+1:i+1] = [x[i]] + x[j+1:i]
     return x
 
+# quicksort - O(n*log(n)) average time complexity, O(n^2) worst time complexity i.e. when array in descending order where pivot is always lowest
 def partition(array, low, high):
     # returns new pivot index
     # array is mutatble (change persists outside function)
