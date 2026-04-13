@@ -16,11 +16,11 @@ func = getattr(module, args.f)
 inp = literal_eval(args.i)
 f = StringIO()
 with redirect_stdout(f):
-    out = func(inp)
+    out = func(*inp)
 captured = f.getvalue()
-if not (out or captured):
+if out==None and not captured:
     print("Result:", inp) # capture inplace changes for mutable objects
-elif out:
+elif out is not None:
     print("Result: ", out) # capture output
 else:
     print("Result:", captured) # capture stdout/print produced inside func

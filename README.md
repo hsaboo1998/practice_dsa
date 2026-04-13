@@ -4,4 +4,6 @@
 For example:
 
 ```bash
-python run.py -m {module_name} -f {function_name} -i {input_argument}
+python run.py -m {module_name} -f {function_name} -i {input_arguments}
+
+# input_arguments are a list of arguments without any space
