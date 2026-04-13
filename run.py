@@ -2,6 +2,8 @@
 import argparse
 import importlib
 from ast import literal_eval
+from io import StringIO
+from contextlib import redirect_stdout
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-m")
@@ -12,8 +14,13 @@ args = parser.parse_args()
 module = importlib.import_module(args.m)
 func = getattr(module, args.f)
 inp = literal_eval(args.i)
-out = func(inp)
-if not out:
-    print("Result:", inp) # for inplace changes for mutable objects
+f = StringIO()
+with redirect_stdout(f):
+    out = func(inp)
+captured = f.getvalue()
+if not (out or captured):
+    print("Result:", inp) # capture inplace changes for mutable objects
+elif out:
+    print("Result: ", out) # capture output
 else:
-    print("Result: ", out)
+    print("Result:", captured) # capture stdout/print produced inside func
