@@ -30,20 +30,18 @@ def insertion_sort(x):
 
 # quicksort - O(n*log(n)) average time complexity, O(n^2) worst time complexity 
 # i.e. when array in descending order where partition index is always lowest
-def partition(array, low, high):
-    # returns new pivot index
-    # array is mutatble (change persists outside function)
-    pivot_idx = high
-    i = low-1
-    for j in range(low, high):
-        if array[j]<=array[pivot_idx]:
-            i+=1 # until i all lower than pivot, so, i+1 place is left to insert j values smaller than pivot
-            array[i], array[j] = array[j], array[i]
-    array[pivot_idx], array[i+1] = array[i+1], array[pivot_idx]
-    return i+1
-
-
 def quicksort(array, low=0, high=None):
+    def partition(array, low, high):
+        # returns new pivot index
+        # array is mutatble (change persists outside function)
+        pivot_idx = high
+        i = low-1
+        for j in range(low, high):
+            if array[j]<=array[pivot_idx]:
+                i+=1 # until i all lower than pivot, so, i+1 place is left to insert j values smaller than pivot
+                array[i], array[j] = array[j], array[i]
+        array[pivot_idx], array[i+1] = array[i+1], array[pivot_idx]
+        return i+1
     if not high:
         high = len(array) - 1
     if low<high:
