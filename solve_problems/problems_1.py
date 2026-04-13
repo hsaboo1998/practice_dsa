@@ -1,4 +1,4 @@
-# reverse an array
+# Prob1: reverse an array
 def reverse_array(a):
     left = 0
     right = len(a)-1
@@ -8,6 +8,7 @@ def reverse_array(a):
         right-=1
     return a
 
+# Prob2: factorial of a large no.
 def fact(n):
     import sys
     def multiply(res, res_size, x):
@@ -32,4 +33,4 @@ def fact(n):
         sys.stdout.write(str(res[i]))
         sys.stdout.flush()
         i-=1
-        
+    
