@@ -92,4 +92,20 @@ def mergeOverlap(intervals, newinterval):
         if leftmost and rightmost:
             intervals = merge(intervals, newinterval, leftmost, rightmost)
             return intervals
+
+def longest_unq_substring(s):
+    unq = {}
+    left = 0
+    right = 0
+    win_len = 0
+    while right <= len(s)-1:
+        if s[right] in unq:
+            left=unq[s[right]]+1
+            unq = dict(zip(s[left:right+1], range(left, right+1)))
+        else:
+            unq[s[right]] = right 
+            win_len = max(win_len, right-left+1)
+        right+=1
+    return win_len
         
+    
