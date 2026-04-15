@@ -18,9 +18,9 @@ f = StringIO()
 with redirect_stdout(f):
     out = func(*inp)
 captured = f.getvalue()
-if out==None and not captured:
-    print("Result:", inp) # capture inplace changes for mutable objects
-elif out is not None:
+if captured !='':
+    print("captured: ", captured) # capture stdout/print produced inside func
+if out is not None:
     print("Result: ", out) # capture output
-else:
-    print("Result:", captured) # capture stdout/print produced inside func
+if out is None and captured is None:
+    print("Result: ", inp)

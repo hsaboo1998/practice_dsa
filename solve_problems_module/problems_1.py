@@ -1,3 +1,4 @@
+## Arrays and Strings
 # Prob1: reverse an array
 def reverse_array(a):
     left = 0
@@ -93,6 +94,7 @@ def mergeOverlap(intervals, newinterval):
             intervals = merge(intervals, newinterval, leftmost, rightmost)
             return intervals
 
+# Prob5
 def longest_unq_substring(s):
     unq = {}
     left = 0
@@ -108,4 +110,60 @@ def longest_unq_substring(s):
         right+=1
     return win_len
         
-    
+# Prob6: Smallest window containing all chars
+from collections import Counter
+def hasallchars(s,p):
+    p_dict = dict(Counter(p).items())
+    i = 0
+    track_index = []
+    n = len(p)
+    m = len(s)
+    right = m
+    left = 0
+    while i<m:
+        if s[i] in p_dict:
+            track_index.append(i)
+            if p_dict[s[i]]>0:
+                p_dict[s[i]]-=1
+                n-=1
+            else:
+                p_dict[s[i]]-=1
+                if s[i]==s[track_index[0]]:
+                    while p_dict[s[track_index[0]]]<0:
+                        p_dict[s[track_index[0]]]+=1
+                        track_index = track_index[1:]
+        if n==0:
+            if(right-left+1)>track_index[-1]-track_index[0]+1:
+                left, right = track_index[0], track_index[-1]            
+        i+=1
+    if n==0:
+        return s[left:right+1]
+    return ""
+
+#Prob 7:
+def palindrome_subs(s):
+    all_subs = []
+    for i in range(len(s)):
+        k=1
+        is_pal=[1,1,1]
+        while sum(is_pal):
+            if is_pal[0]==1:
+                is_pal[0]=0
+                if i-k>=0 and i+k<len(s):
+                    if s[i-k]==s[i+k]:
+                        all_subs.append(s[i-k:i+k+1])
+                        is_pal[0]=1
+            if is_pal[1]==1:
+                is_pal[1]=0
+                if i-k+1>=0 and i+k<len(s):
+                    if s[i-k+1]==s[i+k]: 
+                        all_subs.append(s[i-k+1:i+k+1])
+                        is_pal[1]=1
+            if is_pal[2]==1:
+                is_pal[2]=0
+                if i-k>=0 and i+k-1<len(s):
+                    if s[i-k]==s[i+k-1]:
+                        all_subs.append(s[i-k:i+k])
+                        is_pal[2]=1
+            k+=1
+    return all_subs
