@@ -110,7 +110,7 @@ def longest_unq_substring(s):
         right+=1
     return win_len
         
-# Prob6: Smallest window containing all chars
+# Prob6: Smallest window containing all chars (my solution)
 from collections import Counter
 def hasallchars(s,p):
     p_dict = dict(Counter(p).items())
@@ -140,7 +140,7 @@ def hasallchars(s,p):
         return s[left:right+1]
     return ""
 
-#Prob 7:
+#Prob 7: (my solution)
 def palindrome_subs(s):
     all_subs = []
     for i in range(len(s)):
